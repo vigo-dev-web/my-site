@@ -12,7 +12,7 @@ import 'swiper/scss/effect-fade'
 import 'swiper/scss/pagination'
 import 'swiper/scss/navigation'
 
-const Testimonials = () => {
+const Testimonials = ({ ref }) => {
 	const pagination = {
 		clickable: true,
 		el: `.${styles.bulletContainer}`,
@@ -37,6 +37,7 @@ const Testimonials = () => {
 
 	return (
 		<motion.section
+			ref={ref}
 			className={styles.section}
 			initial='hidden'
 			whileInView='visible'

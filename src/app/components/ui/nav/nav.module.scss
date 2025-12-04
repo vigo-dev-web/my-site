@@ -9,10 +9,10 @@
 .list {
    max-width: 100%;
    display: flex;
-   justify-content: space-between;
-   font-size: 1rem;
+   justify-content: center;
+   font-size: toRem(15);
    font-weight: 600;
-   gap: toRem(10);
+   gap: toRem(40);
    color: rgba($whiteColor, 0.85);
    letter-spacing: toRem(2);
    text-wrap: nowrap;

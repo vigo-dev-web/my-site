@@ -1,41 +1,35 @@
-import { AnimatePresence } from 'motion/react'
-import * as motion from 'motion/react-client'
+import { Accordion } from 'radix-ui'
+import { ChevronDownIcon } from '@radix-ui/react-icons'
 import styles from './accordionItem.module.scss'
-
-const box = {
-	padding: '0 24px 16px'
-}
-const transition = {
-	ease: "linear" ,
-	duration: 0.2,
-}
-
-const AccordionItem = ({ title, text, onClick, isOpen }) => {
+const AccordionItem = ({ title, text, index }) => {
 	return (
-		<div className={styles.body}>
-			<h3 className={styles.title}>
-				<button
-					className={isOpen ? `${styles.btn} ${styles.btnActive}` : styles.btn}
-					onClick={onClick}
+		<>
+			<Accordion.Root
+				className={styles.Root}
+				type='single'
+				collapsible
+			>
+				<Accordion.Item
+					className={styles.Item}
+					value={`item-${index + 1}`}
 				>
-					{title}
-				</button>
-			</h3>
-			<AnimatePresence initial={false}>
-				{isOpen ? (
-					<motion.div
-						initial={{ scale: 0, opacity: 0 }}
-						animate={{ scale: '100%', opacity: 1 }}
-						exit={{ scale: 0, opacity: 0 }}
-						transition={transition}
-						style={box}
-						key='box'
-					>
-						{text}
-					</motion.div>
-				) : null}
-			</AnimatePresence>
-		</div>
+					<Accordion.Header className={styles.Header}>
+						<Accordion.Trigger className={styles.Trigger}>
+							{title}
+							<div className={styles.ChevronWrapper}>
+								<ChevronDownIcon
+									className={styles.Chevron}
+									aria-hidden
+								/>
+							</div>
+						</Accordion.Trigger>
+					</Accordion.Header>
+					<Accordion.Content className={styles.Content}>
+						<div className={styles.ContentText}>{text}</div>
+					</Accordion.Content>
+				</Accordion.Item>
+			</Accordion.Root>
+		</>
 	)
 }
 

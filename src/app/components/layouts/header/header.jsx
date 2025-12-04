@@ -6,9 +6,10 @@ import Nav from '../../ui/nav/nav'
 import styles from './header.module.scss'
 import MobileNavLinks from '../../ui/mobileNav/mobileNavLinks'
 
-const Header = () => {
+const Header = ({ activeIndex, handleClick }) => {
 	const [isMobile, setIsMobile] = useState(false)
 	const [isActiveMenu, setIsActiveMenu] = useState(false)
+
 	const logWidth = () => {
 		if (window.innerWidth <= 992) {
 			setIsMobile(true)
@@ -58,7 +59,10 @@ const Header = () => {
 				<div className={styles.wrapper}>
 					<>
 						<Logo />
-						<Nav />
+						<Nav
+							activeIndex={activeIndex}
+							handleScroll={handleClick}
+						/>
 						<Connect />
 					</>
 				</div>

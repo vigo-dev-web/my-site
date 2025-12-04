@@ -2,14 +2,19 @@
 import { useScrollScreen } from '../../../utils/utils'
 import styles from './goTo.module.scss'
 
-const GoTo = () => {
-	const { isScrollScreen, toScrollTop } = useScrollScreen()
+const GoTo = ({ setIdx }) => {
+	const { isScrollScreen, toScroll } = useScrollScreen()
+
+	const handleClick = () => {
+		setIdx(0)
+		toScroll(0)
+	}
 
 	return (
 		isScrollScreen && (
 			<button
 				className={styles.body}
-				onClick={() => toScrollTop()}
+				onClick={handleClick}
 			>
 				<span className={styles.content}></span>
 			</button>

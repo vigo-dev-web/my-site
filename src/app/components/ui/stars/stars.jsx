@@ -1,42 +1,23 @@
-import styles from './stars.module.scss'
 import { TiStarFullOutline, TiStarOutline } from 'react-icons/ti'
+import styles from './stars.module.scss'
 
 const Stars = ({ rating }) => {
-	const countStars = (rating) => {
-		const starsArr = []
-		const maxLength = 5
-		for (let index = 0; index < rating; index++) {
-			starsArr.push(
-				<TiStarFullOutline
-					size={28}
-					className={styles.star}
-				/>
-			)
-		}
-		if (starsArr.length === maxLength) return starsArr
-		if (starsArr.length === maxLength - 1)
-			return [
-				...starsArr,
-				<TiStarOutline
-					size={28}
-					className={styles.star}
-				/>
-			]
-		if (starsArr.length === maxLength - 2)
-			return [
-				...starsArr,
-				<TiStarOutline
-					size={28}
-					className={styles.star}
-				/>,
-				<TiStarOutline
-					size={28}
-					className={styles.star}
-				/>
-			]
-	}
+	const emptyStars = [...Array(5 - rating)].map((_, idx) => (
+		<TiStarOutline
+			key={`empty + ${idx}`}
+			size={28}
+			className={styles.star}
+		/>
+	))
+	const fullStars = [...Array(rating)].map((_, idx) => (
+		<TiStarFullOutline
+			key={`full + ${idx}`}
+			size={28}
+			className={styles.star}
+		/>
+	))
 
-	const stars = countStars(rating)
+	const stars = [...fullStars, ...emptyStars]
 
 	return <span className={styles.stars}>{stars}</span>
 }

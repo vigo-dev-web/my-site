@@ -45,10 +45,11 @@
    }
 
 }
+
 .container {
-   @include container;
    text-align: center;
    position: relative;
+   @include container;
 }
 
 .title {
@@ -159,11 +160,6 @@
 
 .bulletActive {
    box-shadow: inset 3px 0 2px 2px $primaryColor, inset -3px 0 0 2px $secondaryColor, inset 0 3px 3px 2px $secondaryColor, inset 0 -3px 3px 2px $secondaryColor;
-   // @media (any-hover: hover) {
-   //    &:hover {
-   //       box-shadow: inset 3px 0 2px 2px $primaryColor, inset -3px 0 0 2px $secondaryColor, inset 0 3px 3px 2px $secondaryColor, inset 0 -3px 3px 2px $secondaryColor;
-   //    }
-   // }
    @media (max-width: $sTablet) {
       box-shadow: inset 3px 0 1px 1px $primaryColor, inset -3px 0 0 1px $secondaryColor, inset 0 3px 2px 1px $secondaryColor, inset 0 -3px 2px 1px $secondaryColor;
    }

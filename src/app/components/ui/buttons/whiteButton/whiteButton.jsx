@@ -1,6 +1,6 @@
 import styles from './whiteButton.module.scss'
 
-const WhiteButton = ({ children, isLink, view, radius, size }) => {
+const WhiteButton = ({onClick, children, isLink }) => {
 	return isLink ? (
 		<a
 			className={styles.button}
@@ -9,7 +9,7 @@ const WhiteButton = ({ children, isLink, view, radius, size }) => {
 			{children}
 		</a>
 	) : (
-		<button className={styles.button}>{children}</button>
+		<button onClick={onClick} className={styles.button}>{children}</button>
 	)
 }
 

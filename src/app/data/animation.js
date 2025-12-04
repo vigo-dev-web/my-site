@@ -1,11 +1,12 @@
 export const titleAnimation = {
 	hidden: {
-		y: 100,
-		opacity: 0
+		y: 200,
+		opacity: 0,
+		transition: { y: { stiffness: 1000 } },
 	},
 	visible: (custom) => ({
 		y: 0,
 		opacity: 1,
-		transition: { delay: custom * 0.3 }
+		transition: { y: { stiffness: 1000, velocity: -100 } }
 	})
 }

@@ -1,11 +1,11 @@
 import * as motion from 'motion/react-client'
-import styles from './achievements.module.scss'
-import Counter from '../../app/components/ui/counter/counter'
 import { FaHandHoldingHeart } from 'react-icons/fa'
 import { FaSackDollar } from 'react-icons/fa6'
 import { IoCalendarSharp } from 'react-icons/io5'
 import { MdWorkHistory } from 'react-icons/md'
 import { useMediaQuery } from 'react-responsive'
+import styles from './achievements.module.scss'
+import Counter from '../../app/components/ui/counter/counter'
 import { titleAnimation } from '../../app/data/animation'
 
 const Achievements = () => {
@@ -55,8 +55,8 @@ const Achievements = () => {
 							color='#fff'
 						/>
 						<div>
-							<Counter keyFrames={130} />
-							<p>средний оффер</p>
+							<Counter keyFrames={40} />
+							<p>реализованных проектов</p>
 						</div>
 					</div>
 					<div className={styles.itemWrapper}>

@@ -12,19 +12,19 @@
 
 .note {
    position: relative;
-   left: 23%;
+   right: 23%;
    font-size: toRem(13);
-   text-align: left;
-   margin-left: toRem(30);
+   text-align: right;
+   margin-right: toRem(30);
    margin-bottom: toRem(60);
    &::after {
       content: "";
       position: absolute;
-      right: calc(100% + toRem(30));
+      left: calc(100% + toRem(30));
       top: toRem(10);
       width: toRem(440);
       height: toRem(1.5);
-      background: linear-gradient(to left, rgba(255,255,255,0) -5%,rgba(255,255,255,0.25) 40%,rgba(255,255,255,0.4) 90%);  
+      background: linear-gradient(to right, rgba(255,255,255,0) -5%,rgba(255,255,255,0.25) 40%,rgba(255,255,255,0.4) 90%);  
    }
    @media (max-width: $tablet) {
       margin-right: toRem(30);

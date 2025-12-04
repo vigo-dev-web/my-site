@@ -1,0 +1,125 @@
+@import '../../app/styles/vars';
+
+.section
+{
+	min-height: 100vh;
+	padding-top: toRem(100);
+	padding-bottom: toRem(100);
+
+	@media (max-width: $mobile)
+	{
+		padding-top: toRem(40);
+		padding-bottom: toRem(40);
+	}
+}
+
+.container
+{
+	text-align: center;
+	position: relative;
+	@include container;
+}
+
+.title
+{
+	margin-bottom: toRem(70);
+	text-align: center;
+	text-transform: lowercase;
+	background-image: linear-gradient(to top right, $primaryColor, $secondaryColor, );
+	color: transparent;
+	background-clip: text;
+
+	& span
+	{
+		color: $whiteColor;
+		text-transform: capitalize;
+	}
+
+	@media (max-width: $sTablet)
+	{
+		margin-bottom: toRem(40);
+	}
+}
+
+.Root
+{
+	max-width: toRem(600);
+	margin: 0 auto;
+}
+
+.Field
+{
+	display: grid;
+	margin-bottom: toRem(24);
+}
+
+.Label
+{
+	font-size: toRem(18);
+	font-weight: 600;
+	color: white;
+	margin-bottom: toRem(12);
+}
+
+.Message
+{
+	font-size: 13px;
+	color: white;
+	opacity: 0.8;
+}
+
+.FieldWrapper
+{
+	display: flex;
+	align-items: baseline;
+	justify-content: space-between
+}
+
+.Input,
+.Textarea
+{
+	all: unset;
+	box-sizing: border-box;
+	width: 100%;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: toRem(12);
+	font-size: 16px;
+	color: white;
+	background-color: $shadowPurple !important;
+	box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.16);
+	text-align: left;
+
+	&:focus
+	{
+		box-shadow: inset 1px 0 1px 1px #61daff, inset -1px 0 0 1px #0085fa, inset 0 1px 1px 1px #0085fa, inset 0 -1px 1px 1px #0085fa;
+	}
+
+	&::selection
+	{
+		background-color: $shadowPurple;
+	}
+}
+
+.Input
+{
+	padding: 0 toRem(20);
+	height: toRem(52);
+	line-height: 1;
+}
+
+.Textarea
+{
+	resize: none;
+	padding: toRem(10) toRem(20);
+	height: toRem(120);
+	white-space: pre-wrap;
+	word-wrap: break-word;
+	overflow-wrap: break-word;
+	overflow-x: hidden;
+}
+
+.buttonWrapper {
+	margin-top: toRem(36);
+}

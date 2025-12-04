@@ -3,14 +3,18 @@ import { useLayoutEffect, useState } from 'react'
 
 export const useScrollScreen = () => {
 
-	const toScrollTop = () => {
-		window.scroll({
-			top: 0,
-			left: 0,
-			behavior: 'smooth'
-		})
+	const scrollObject = {
+		behavior: 'smooth',
+		block: 'start'
 	}
 
+	const toScroll = (y) => {
+		window.scroll({
+			top: y,
+			left: 0,
+			...scrollObject
+		})
+	}
 	const [isScrollScreen, setScreenHeight] = useState(false)
 
 	useLayoutEffect(() => {
@@ -29,5 +33,5 @@ export const useScrollScreen = () => {
 		}
 	}, [])
 
-	return { isScrollScreen, toScrollTop }
+	return { isScrollScreen, toScroll, scrollObject }
 }

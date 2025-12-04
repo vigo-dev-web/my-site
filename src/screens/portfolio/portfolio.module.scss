@@ -1,0 +1,85 @@
+@import '../../app/styles/vars';
+
+.section
+{
+   min-height: 100vh;
+   padding-top: toRem(100);
+   padding-bottom: toRem(100);
+
+   @media (max-width: $mobile)
+   {
+      padding-top: toRem(40);
+      padding-bottom: toRem(40);
+   }
+}
+
+.container
+{
+   @include container;
+}
+
+.note {
+   position: relative;
+   left: 23%;
+   font-size: toRem(13);
+   text-align: left;
+   margin-left: toRem(30);
+   margin-bottom: toRem(60);
+   &::after {
+      content: "";
+      position: absolute;
+      right: calc(100% + toRem(30));
+      top: toRem(10);
+      width: toRem(440);
+      height: toRem(1.5);
+      background: linear-gradient(to left, rgba(255,255,255,0) -5%,rgba(255,255,255,0.25) 40%,rgba(255,255,255,0.4) 90%);  
+   }
+   @media (max-width: $tablet) {
+      margin-right: toRem(30);
+      right: 0;
+      &::after {
+         content: "";
+         width: 0;
+         height: 0;
+         background: none;  
+      }
+   }
+   @media (max-width: $sTablet) {
+      right: 50%;
+      margin-right: 0;
+      transform: translateX(50%);
+      margin-bottom: toRem(40);
+      text-align: center;
+   }
+
+}
+
+.title
+{
+   margin-bottom: toRem(70);
+   text-align: center;
+   background-image: linear-gradient(to top right, $primaryColor, $secondaryColor, );
+   color: transparent;
+   background-clip: text;
+
+   & span
+   {
+      color: $whiteColor;
+   }
+
+   @media (max-width: $sTablet)
+   {
+      margin-bottom: toRem(40);
+   }
+}
+
+.wrapper
+{
+   margin: 0 auto;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+   align-items: center;
+   gap: toRem(30);
+   max-width: toRem(600);
+}

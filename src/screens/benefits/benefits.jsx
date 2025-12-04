@@ -2,13 +2,12 @@
 import * as motion from 'motion/react-client'
 import styles from './benefits.module.scss'
 import { titleAnimation } from '../../app/data/animation'
-import { useEffect, useRef, useState } from 'react'
+import { useState } from 'react'
 import { useMotionValueEvent, useScroll } from 'motion/react'
 
-const Benefits = () => {
+const Benefits = ({ref}) => {
 	const [translateValue, setTranslateValue] = useState()
-	const ref = useRef(null)
-	const { scrollY, scrollYProgress } = useScroll()
+	const { scrollY, scrollYProgress } = useScroll()	
 
 	useMotionValueEvent(scrollY, 'change', (latest) => {
 		if( 800 < latest < 2650  ) {
@@ -18,11 +17,11 @@ const Benefits = () => {
 
 	return (
 		<motion.section
+			ref={ref}
 			className={styles.section}
 			initial='hidden'
 			whileInView='visible'
 			viewport={{ amount: 0.2 }}
-			ref={ref}
 		>
 			<p className={styles.note}>
 				Рвасскажу тебе - <br /> почему нам стоит поработать

@@ -1,10 +1,8 @@
 'use client'
+import { useEffect, useRef, useState } from 'react'
+import { useInView } from 'motion/react'
 import Header from './components/layouts/header/header'
 import Footer from './components/layouts/footer/footer'
-import Connect from './components/ui/connect/connect'
-import Logo from './components/ui/logo/logo'
-import Nav from './components/ui/nav/nav'
-import styles from './page.module.scss'
 import Copyright from './components/ui/copyright/copyright'
 import Testimonials from '../screens/testimonials/testimonials'
 import Contacts from './components/ui/contacts/contacts'
@@ -15,91 +13,83 @@ import MyServices from '../screens/myServices/myServices'
 import Achievements from '../screens/achievements/achievements'
 import Benefits from '../screens/benefits/benefits'
 import About from '../screens/about/about'
+import ContactForm from 'screens/contactForm/contactForm'
+import Portfolio from 'screens/portfolio/portfolio'
+import Cta from './components/ui/cta/cta'
+import styles from './page.module.scss'
+import { cta } from './data/cta'
+import { useScrollScreen } from './utils/utils'
 
 export default function Home() {
+	const [activeIndex, setActiveIndex] = useState(0)
+	const { scrollObject } = useScrollScreen()
+
+	const aboutRef = useRef(null)
+	const benefitsRef = useRef(null)
+	const serviceRef = useRef(null)
+	const portfolioRef = useRef(null)
+	const testimonialsRef = useRef(null)
+	const tarifRef = useRef(null)
+	const formRef = useRef(null)
+
+	const isViewAbout = useInView(aboutRef)
+	const isViewBenefits = useInView(benefitsRef, { margin: '-380px' })
+	const isViewService = useInView(serviceRef, { amount: 0.3 })
+	const isViewPortfolio = useInView(portfolioRef, { amount: 0.3 })
+	const isViewTestimonials = useInView(testimonialsRef, { amount: 0.3 })
+	const isViewTarif = useInView(tarifRef, { amount: 0.3 })
+
+	const sections = [
+		{ ref: aboutRef, condition: isViewAbout },
+		{ ref: benefitsRef, condition: isViewBenefits },
+		{ ref: serviceRef, condition: isViewService },
+		{ ref: portfolioRef, condition: isViewPortfolio },
+		{ ref: testimonialsRef, condition: isViewTestimonials },
+		{ ref: tarifRef, condition: isViewTarif }
+	]
+
+	useEffect(() => {
+		const activeSection = sections.find((section) => section.condition)
+		const activeIndex = sections.findIndex((section) => section.condition)
+		if (activeSection) setActiveIndex(activeIndex)
+	}, [isViewAbout, isViewBenefits, isViewService, isViewPortfolio, isViewTestimonials, isViewTarif])
+
+	const handleClick = (event, idx) => {
+		event.preventDefault()
+		sections[idx].ref.current.scrollIntoView(scrollObject)
+	}
+
 	return (
-		<div className={styles.page} >
-			<Header />
-			<GoTo />
+		<div className={styles.page}>
+			<Header
+				activeIndex={activeIndex}
+				handleClick={handleClick}
+			/>
+			<GoTo setIdx={setActiveIndex} />
 			<ArrowDown />
 			<main className={styles.main}>
-				{/* <h1>IT-Ментор 1</h1>
-				<h2>IT-Ментор 2</h2>
-				<h3>IT-Ментор 3</h3>
-				<h4>IT-Ментор 4</h4>
-				<h5>IT-Ментор 5</h5>
-				<h6>IT-Ментор 6</h6>
-
-				<section>
-					<button class='button-1'>Button 1</button>
-					<button class='button-2'>
-						<span class='text'>Button 2</span>
-					</button>
-					<button class='button-1 med'>Button 1</button>
-					<button class='button-2 med'>
-						<span class='text tmed'>Button 2</span>
-					</button>
-					<button class='button-1 bg'>Button 1</button>
-					<button class='button-2 bg'>
-						<span class='text tbg'>Button 2</span>
-					</button>
-				</section>
-				<section>
-					<button class='button-1 rad'>Button 1</button>
-					<button class='button-2 rad'>
-						<span class='text rad'>Button 2</span>
-					</button>
-				</section>
-				<section>
-					<button class='button-1 rad med'>Button 1</button>
-					<button class='button-2 rad med'>
-						<span class='text rad tmed'>Button 2</span>
-					</button>
-				</section>
-				<section>
-					<button class='button-1 rad bg'>Button 1</button>
-					<button class='button-2 rad bg'>
-						<span class='text rad tbg'>Button 2</span>
-					</button>
-				</section>
-				<section>
-					<button class='button-1 sq'>Button 3</button>
-					<button class='button-2 sq'>
-						<span class='text sq'>Button 3</span>
-					</button>
-					<button class='button-1 sq med'>Button 3</button>
-					<button class='button-2 sq med'>
-						<span class='text sq tmed'>Button 3</span>
-					</button>
-					<button class='button-1 sq bg'>Button 3</button>
-					<button class='button-2 sq bg'>
-						<span class='text sq tbg'>Button 3</span>
-					</button>
-				</section>
-				<section style={{ width: '600px' }}>
-					<button class='button-1 bg f'>Button 1</button>
-					<button class='button-2 bg f'>
-						<span class='text tbg'>Button 2</span>
-					</button>
-				</section>
-				<section style={{ width: '600px' }}>
-					<button class='button-1 rad bg f'>Button 1</button>
-					<button class='button-2 rad bg f'>
-						<span class='text rad tbg'>Button 2</span>
-					</button>
-				</section>
-				<section style={{ width: '600px' }}>
-					<button class='button-1 sq bg f'>Button 1</button>
-					<button class='button-2 sq bg f'>
-						<span class='text sq tbg'>Button 2</span>
-					</button>
-				</section> */}
-				<About />
+				<About ref={aboutRef} refForm={formRef.current} />
 				<Achievements />
-				<Benefits />
-				<MyServices />
-				<Testimonials />
-				<Tariffs />
+				<Benefits ref={benefitsRef} />
+				<Cta
+					refForm={formRef.current}
+					title={cta[0].title}
+					subtitle={cta[0].subtitle}
+				>
+					{cta[0].button}
+				</Cta>
+				<MyServices ref={serviceRef} />
+				<Portfolio ref={portfolioRef} />
+				<Testimonials ref={testimonialsRef} />
+				<Cta
+					refForm={formRef.current}
+					title={cta[1].title}
+					subtitle={cta[1].subtitle}
+				>
+					{cta[1].button}
+				</Cta>
+				<Tariffs ref={tarifRef} />
+				<ContactForm ref={formRef} />
 			</main>
 			<Footer>
 				<Contacts />

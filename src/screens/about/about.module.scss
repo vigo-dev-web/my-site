@@ -64,3 +64,15 @@
    border-top-left-radius: toRem(110);
    width: 100%;
 }
+
+.btnContainer {
+   margin-top: toRem(10);
+   max-width: toRem(300);
+   width: 100%;
+}
+
+.textWrapper {
+   display: flex;
+   flex-direction: column;
+   gap: toRem(32);
+}

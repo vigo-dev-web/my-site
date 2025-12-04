@@ -5,7 +5,7 @@ import AccordionItem from '../../app/components/ui/accordionItem/accordionItem'
 import styles from './myServices.module.scss'
 import { titleAnimation } from '../../app/data/animation'
 
-const MyServices = () => {
+const MyServices = ({ref}) => {
 	const [openId, setId] = useState(null)
 
 	const handleClick = (index) => {
@@ -14,6 +14,7 @@ const MyServices = () => {
 
 	return (
 		<motion.section
+			ref={ref}
 			className={styles.section}
 			initial='hidden'
 			whileInView='visible'
@@ -36,6 +37,7 @@ const MyServices = () => {
 						<AccordionItem
 							key={item.id}
 							{...item}
+							index={index}
 							isOpen={index === openId}
 							onClick={() => handleClick(index)}
 						/>

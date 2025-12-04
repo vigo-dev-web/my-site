@@ -4,9 +4,10 @@ import TariffCard from '../../app/components/tariffCard/tarifCard'
 import styles from './tariffs.module.scss'
 import { titleAnimation } from '../../app/data/animation'
 
-const Tariffs = () => {
+const Tariffs = ({ref}) => {
 	return (
 		<motion.section
+			ref={ref}
 			initial='hidden'
 			whileInView='visible'
 			viewport={{ amount: 0.2 }}
@@ -16,6 +17,7 @@ const Tariffs = () => {
 				<motion.h2
 					custom={1}
 					variants={titleAnimation}
+					viewport={{ once: true }}
 					className={styles.title}
 				>
 					Выгодные предложения для <span>Тебя</span>

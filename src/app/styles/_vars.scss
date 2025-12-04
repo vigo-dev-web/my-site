@@ -1,4 +1,5 @@
-$mainPurple: #120d1f;
+$mainPurple: rgb(18, 13, 31);
+$mainPurple100: rgba(18, 13, 31, 0.8);
 $shadowPurple: #201b2c;
 $lightPurple: #311d5f;
 $primaryColor: #0085fa;
@@ -49,7 +50,7 @@ $sMobile: toEm(360);
 @mixin container {
   width: 100%;
   max-width: $container;
-  padding: 0 toRem(10);
+  padding: 0 toRem(15);
   margin: 0 auto;
   @media (max-width: $tablet) {
     padding: 0 toRem(30);

@@ -1,4 +1,3 @@
-import { tariffs } from '../../data/tariff'
 import DarkButton from '../ui/buttons/darkButton/darkButton'
 import WhiteButton from '../ui/buttons/whiteButton/whiteButton'
 import styles from './tarifCard.module.scss'
@@ -18,7 +17,7 @@ const TariffCard = ({ title, cost, discountCost, dark, radius }) => {
 			<div className={dark ? styles.wrapper : `${styles.wrapper} ${styles.border}`}>
 				<div className={styles.header}>
 					<h4 className={styles.title}>{title}</h4>
-					<p className={styles.cost}>
+					<p className={styles.cost}> 
 						{discountCost} <span>&#8381;</span>
 					</p>
 					<span className={styles.discountCost}>{cost}</span> <span>&#8381;</span>
