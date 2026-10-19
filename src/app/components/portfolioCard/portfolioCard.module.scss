@@ -1,0 +1,111 @@
+@import '../../styles/vars';
+
+.card
+{
+   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+   border: 0.7px solid #ffffff29;
+   background-color: rgb(32, 27, 44);
+   border-radius: toRem(12);
+   min-height: toRem(720);
+   padding: toRem(26) toRem(24);
+   height: 100%;
+   max-width: toRem(580);
+   width: 100%;
+   transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+
+   @media (max-width: $tablet)
+   {
+      padding: toRem(18) toRem(16);
+   }
+
+   @media (max-width: $sTablet)
+   {
+      padding: toRem(26) toRem(24);
+   }
+
+   @media (max-width: $mobile)
+   {
+      padding: toRem(18) toRem(16);
+   }
+
+   &:hover
+   {
+      transform: translateY(-6px);
+      box-shadow:
+         inset 1px 0 1px 0px #61daff,
+         inset -1px 0 1px 0px #0085fa,
+         inset 0 1px 1px 0px #0085fa,
+         inset 0 -1px 1px 0px #0085fa;
+   }
+}
+
+.imgContainer
+{
+   width: 100%;
+   position: relative;
+   flex: 1 0 toRem(370);
+}
+
+.img
+{
+   border-top-left-radius: toRem(8);
+   border-top-right-radius: toRem(8);
+}
+
+.text
+{
+   color: $whiteColor;
+   font-size: toRem(16);
+   font-weight: 500;
+   line-height: 1.3;
+
+   @media (max-width: $mobile)
+   {
+      font-size: toRem(14);
+   }
+}
+
+.wrapper
+{
+   height: 100%;
+   display: flex;
+   flex-direction: column;
+   height: 100%;
+   gap: toRem(24);
+}
+
+.contentWrapper
+{
+   display: flex;
+   flex-direction: column;
+   gap: toRem(16);
+   justify-content: space-between;
+   height: 100%;
+   
+   @media (max-width: $mobile)
+   {
+      gap: toRem(8);
+   }
+}
+
+.stackWrapper
+{
+   display: flex;
+   gap: toRem(8);
+   margin-bottom: toRem(8);
+   flex-wrap: wrap;
+}
+
+.subTitle
+{
+   color: $primaryColor;
+   font-weight: 600;
+   font-size: toRem(16);
+}
+
+.btnWrapper
+{
+   display: flex;
+   justify-content: center;
+   gap: toRem(16);
+}

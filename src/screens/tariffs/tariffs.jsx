@@ -15,8 +15,9 @@ const Tariffs = ({ref}) => {
 		>
 			<div className={styles.container}>
 				<motion.h2
-					custom={1}
 					variants={titleAnimation}
+					initial='hidden'
+					whileInView='visible'
 					viewport={{ once: true }}
 					className={styles.title}
 				>

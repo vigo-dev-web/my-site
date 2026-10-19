@@ -128,7 +128,7 @@
    z-index: 2;
    @media (max-width: $sTablet) {
       font-size: toRem(12);
-      bottom: -26%;
+      bottom: -24%;
    }
 }
 
@@ -146,13 +146,13 @@
       @include adaptiveSTabletValue("margin-left", 16, 12 );
    }
    @media (max-width: $mobile) {
-      font-size: toRem(12);
+      font-size: toRem(14);
       margin-left: 7%;
    }
 }
 
 .item {
-   margin-bottom: toRem(8);
+   margin-bottom: toRem(12);
    & span {
       display: inline-block;
       margin-right: toRem(14);

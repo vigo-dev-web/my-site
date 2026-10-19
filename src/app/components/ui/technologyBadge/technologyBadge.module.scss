@@ -1,0 +1,10 @@
+@import '../../../styles/vars';
+
+
+.item {
+   background-color: lightgreen;
+   padding: toRem(2) toRem(7);
+   border-radius: toRem(4);
+   font-size: toRem(14);
+   font-weight: 700;
+}

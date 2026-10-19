@@ -28,11 +28,11 @@
    height: 100%;
    width: 100%;
    line-height: 0;
-   font-weight: 700;
-   font-size: toRem(20);
+   font-weight: 500;
+   font-size: toRem(16);
    &:after {
       position: absolute;
-      content: '\1F861';
+      content: '\2191';
       top: 50%;
       left: 50%;
       color: #fff;

@@ -1,46 +1,71 @@
 @import '../../../../styles/vars';
 
-.button {
+.button
+{
    height: 100%;
    width: 100%;
-   font-size: 1.1rem;
+   font-size: toRem(16);
    font-weight: 600;
-   text-transform: uppercase;
    transition: $mainTransition;
    border: 0;
    display: flex;
    justify-content: center;
    margin: 0 auto;
    align-items: center;
-   line-height: 2;
    text-align: center;
    border-radius: toRem(8);
-   padding: 1px; 
-   background-image: linear-gradient(215deg, $primaryColor 0%, $secondaryColor 55%, $primaryColor 90% );
+   padding: 1px 1px;
+   max-width: 176px;
+   background-image: linear-gradient(215deg, $primaryColor 0%, $secondaryColor 55%, $primaryColor 90%);
    background-size: 280% auto;
-   box-shadow: 
-   0px 0px 5px rgba(71, 184, 255, 0.5),
-   inset 4px 4px 8px rgba(175, 230, 255, 0.5),
-   inset -4px -4px 8px rgba(19, 95, 216, 0.35);
+   box-shadow:
+      0px 0px 5px rgba(71, 184, 255, 0.5),
+      inset 4px 4px 8px rgba(175, 230, 255, 0.5),
+      inset -4px -4px 8px rgba(19, 95, 216, 0.35);
    overflow: hidden;
-   & span {
-     background-color: $shadowPurple;
-     padding: 13.5px 18px;
-     width: 100%;
-     height: 100%;
-     transition: $mainTransition;
-     border-radius: 8px;
-     color: $primaryColor;
-      @media (any-hover: hover) {
-         &:hover {
+
+   & span
+   {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: $shadowPurple;
+      padding: 13.5px 18px;
+      width: 100%;
+      height: 100%;
+      transition: $mainTransition;
+      border-radius: 8px;
+      color: $primaryColor;
+      vertical-align: baseline;
+
+      @media (any-hover: hover)
+      {
+         &:hover
+         {
             background: none;
             color: $whiteColor;
-         }      
+         }
       }
    }
-   @media (any-hover: hover) {
-      &:hover {
+
+   @media (max-width: $sTablet)
+   {
+      max-width: unset;
+   }
+
+   @media (any-hover: hover)
+   {
+      &:hover
+      {
          outline: 0;
       }
+   }
+}
+
+.small
+{
+   & span
+   {
+      padding: 5px 18px;
    }
 }

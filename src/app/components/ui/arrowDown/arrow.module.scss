@@ -3,7 +3,7 @@
 .arrow {
    position: absolute;
    bottom: toRem(50);
-   right: 50%;
+   right: calc(50% - toRem(10));
    opacity: 0;
    display: inline-block;
    font-size: toRem(30);

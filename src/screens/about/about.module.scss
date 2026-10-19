@@ -1,78 +1,192 @@
 @import '../../app/styles/vars';
 
-.section {
+.section
+{
    min-height: 100vh;
    padding-top: toRem(64);
-   background-image: url(../../../public/img/background_1.jpg);
+   background-image: url(../../../public/img/background_6.jpg);
    background-attachment: fixed;
    background-position: center;
    background-repeat: no-repeat;
    background-size: cover;
    clip-path: polygon(0% 0%, 100.1% 0%, 100.1% 89.3%, 0% 99.5%);
+
+   @media (max-width: $sTablet)
+   {
+      clip-path: polygon(0% 0%, 100.1% 0%, 100.1% 95%, 0% 97%);
+      background-attachment: scroll;
+   }
 }
 
-.container {
+.container
+{
    @include container;
 }
 
-.wrapper {
+.wrapper
+{
    display: flex;
    justify-content: space-between;
    gap: toRem(20);
    align-items: center;
    margin-top: toRem(50);
-}
 
-.preTitle {
-   font-weight: 600;
-   margin-bottom: toRem(30);
-}
+   @media (max-width: $tablet)
+   {
+      gap: toRem(16);
+   }
 
-.title {
-   & span {
-      background-image: linear-gradient(to top right, $primaryColor, $secondaryColor,);
-      color: transparent;
-      background-clip: text
+   @media (max-width: $sTablet)
+   {
+      margin-top: toRem(32);
+      flex-direction: column;
+      gap: toRem(48);
+      padding-bottom: toRem(64);
    }
 }
 
-.text {
+.preTitle
+{
+   font-weight: 600;
+   margin-bottom: toRem(30);
+
+   @media (max-width: $sTablet)
+   {
+      font-size: toRem(16);
+      margin-bottom: toRem(24);
+   }
+}
+
+.title
+{
+   margin-bottom: toRem(16);
+
+   & span
+   {
+      background-image: linear-gradient(to top right, $primaryColor, $secondaryColor, );
+      color: transparent;
+      background-clip: text
+   }
+
+   @media (max-width: 518px)
+   {
+      max-width: toRem(360);
+      width: 100%;
+   }
+}
+
+.text
+{
    color: $whiteColor;
    font-weight: 600;
-   flex-basis: 50%;
-
+   flex-basis: 53%;
 }
 
-.type {
+.type
+{
    display: inline-block;
-   font-size: 4rem; 
-   font-weight: 800; 
-   margin-bottom: toRem(30) 
+   font-size: toRem(48);
+   font-weight: 800;
+   margin-bottom: toRem(30);
+   line-height: 1.2;
+
+   @media (max-width: $tablet)
+   {
+      font-size: toRem(36);
+   }
+
+   @media (max-width: $sTablet)
+   {
+      font-size: toRem(24);
+   }
 }
 
-.img_container {
+.img_container
+{
    max-width: toRem(530);
-   flex-basis: 40%;
+   flex-basis: 47%;
    flex-grow: 2;
    flex-shrink: 1;
+
+   @media (max-width: $tablet)
+   {
+      flex-grow: 1;
+      flex-shrink: 2;
+   }
+
+   @media (max-width: $mobile)
+   {
+      position: absolute;
+      top: 0;
+      right: toRem(15);
+      translate: 0 65%;
+   }
 }
 
-.img {
+.img
+{
    border: 2px solid rgba(80, 80, 80, 0.507);
    border-radius: toRem(30);
    border-bottom-right-radius: toRem(190);
    border-top-left-radius: toRem(110);
    width: 100%;
+   height: auto;
+   display: block;
+   object-fit: cover;
+
+   @media (max-width: $tablet)
+   {
+      height: auto;
+      max-height: toRem(500);
+      border-bottom-right-radius: toRem(100);
+      border-top-left-radius: toRem(70);
+   }
+
+   @media (max-width: $mobile)
+   {
+      max-height: toRem(140);
+      border-radius: toRem(20);
+   }
 }
 
-.btnContainer {
+.btnContainer
+{
    margin-top: toRem(10);
    max-width: toRem(300);
    width: 100%;
+
+   @media (max-width: $sTablet)
+   {
+      margin-inline: auto;
+   }
+
 }
 
-.textWrapper {
+.textWrapper
+{
    display: flex;
    flex-direction: column;
    gap: toRem(32);
+
+   p
+   {
+      font-size: toRem(18);
+   }
+
+   @media (max-width: $tablet)
+   {
+      gap: toRem(24);
+
+      p
+      {
+         font-size: toRem(16);
+      }
+   }
+   @media (max-width: $mobile)
+   {
+      p
+      {
+         font-size: toRem(14);
+      }
+   }
 }

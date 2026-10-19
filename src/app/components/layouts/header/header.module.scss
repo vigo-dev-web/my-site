@@ -1,6 +1,7 @@
 @import '../../../styles/vars';
 
-.header {
+.header
+{
    padding: toRem(20) 0;
    position: fixed;
    top: 0;
@@ -13,19 +14,35 @@
    box-shadow: 0 0 8px 4px #1101018a;
 }
 
-.container {
+@media (max-width: $tablet)
+{
+   .header
+   {
+      display: none;
+   }
+}
+
+
+.container
+{
    @include container;
 }
 
-.wrapper {
+.wrapper
+{
    max-width: 100%;
    display: flex;
    justify-content: space-between;
-   gap: toRem(10);
+   gap: toRem(24);
    align-items: center;
 }
 
-.header_mobile {
+.phone {
+   font-size: toRem(14);
+}
+
+.header_mobile
+{
    background: linear-gradient(to right, rgba($color: $shadowPurple, $alpha: 0.9), rgba($color: $mainPurple, $alpha: 0.95));
    padding: toRem(10) 0;
    position: fixed;
@@ -36,34 +53,51 @@
    backdrop-filter: blur(50px);
    border-bottom: 0.5px solid rgba(128, 128, 128, 0.2);
    box-shadow: 0 6px 6px -2px #1101016c;
+   display: none;
+
 }
 
-.stripes {
+@media (max-width: $tablet)
+{
+   .header_mobile
+   {
+      display: block;
+   }
+}
+
+.stripes
+{
    display: inline-flex;
    flex-direction: column;
    gap: toRem(5);
-   width: toRem(35); 
-   cursor: pointer;  
+   width: toRem(35);
+   cursor: pointer;
    transition: $mainTransition;
 }
 
-.stripe_one, .stripe_two, .stripe_three {
-   background-image: linear-gradient(to top right, $primaryColor, $secondaryColor,);
+.stripe_one,
+.stripe_two,
+.stripe_three
+{
+   background-image: linear-gradient(to top right, $primaryColor, $secondaryColor, );
    width: 100%;
    border-radius: toRem(10);
    height: toRem(4);
-} 
+}
 
-.stripe_two {
+.stripe_two
+{
    width: 100%;
 }
 
-.stripe_three {
+.stripe_three
+{
    width: 60%;
 }
 
-.stripe_active_one {
-   background-image: linear-gradient(to top right, $primaryColor, $secondaryColor,);
+.stripe_active_one
+{
+   background-image: linear-gradient(to top right, $primaryColor, $secondaryColor, );
    width: 100%;
    border-radius: toRem(10);
    height: toRem(4);
@@ -71,14 +105,16 @@
    rotate: 45deg;
 }
 
-.stripe_active_two {
+.stripe_active_two
+{
    background: transparent;
    width: 100%;
    height: toRem(4);
 }
 
-.stripe_active_three {
-   background-image: linear-gradient(to top right, $primaryColor, $secondaryColor,);
+.stripe_active_three
+{
+   background-image: linear-gradient(to top right, $primaryColor, $secondaryColor, );
    width: 100%;
    border-radius: toRem(10);
    height: toRem(4);

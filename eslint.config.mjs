@@ -9,7 +9,7 @@ export default defineConfig([
 		files: ['**/*.{js,mjs,cjs,jsx}'],
 		plugins: { js },
 		extends: ['js/recommended'],
-		languageOptions: { globals: globals.browser },
+		languageOptions: { ...globals.browser, ...globals.node },
 		rules: {
 			'no-unused-vars': [
 				'error',
@@ -37,11 +37,11 @@ export default defineConfig([
 				version: 'detect'
 			}
 		},
-		 rules: {
-      'react/jsx-uses-react': 'error',
-      'react/jsx-uses-vars': 'error',
-      'react/no-unescaped-entities': 'off',
-      'react/react-in-jsx-scope': 'off',
-    }
+		rules: {
+			'react/jsx-uses-react': 'error',
+			'react/jsx-uses-vars': 'error',
+			'react/no-unescaped-entities': 'off',
+			'react/react-in-jsx-scope': 'off'
+		}
 	}
 ])

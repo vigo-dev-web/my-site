@@ -4,9 +4,9 @@ $shadowPurple: #201b2c;
 $lightPurple: #311d5f;
 $primaryColor: #0085fa;
 $secondaryColor: #61daff;
-$starColor: #ffba07;
 $whiteColor: #fff;
-$blackColor: #000;
+$starColor: #ffba07;
+$turboColor: #ff1e56;
 
 $boxShadow: 0 8px 6px -6px rgba(0, 0, 0, 0.5);
 $mainTransition: 0.6s cubic-bezier(0, 0, 0.3642, 1);
@@ -53,7 +53,7 @@ $sMobile: toEm(360);
   padding: 0 toRem(15);
   margin: 0 auto;
   @media (max-width: $tablet) {
-    padding: 0 toRem(30);
+    padding: 0 toRem(20);
  }
 }
 

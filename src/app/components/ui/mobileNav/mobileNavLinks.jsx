@@ -1,40 +1,39 @@
 import Link from 'next/link'
 import styles from './mobileNavLink.module.scss'
 
-const MobileNavLinks = ({ onClick }) => {
-
 const mobileNav = [
-		{ id: '01', title: 'Преимущества', path: '#' },
-		{ id: '02', title: 'Мои кейсы', path: '#' },
-		{ id: '03', title: 'Портфолио', path: '#' },
-		{ id: '04', title: 'Отзывы', path: '#' },
-		{ id: '05', title: 'Предложения', path: '#' },
-	]
+	{ id: '00', title: 'Обо мне', path: '#' },
+	{ id: '01', title: 'Преимущества', path: '#' },
+	{ id: '02', title: 'Мои кейсы', path: '#' },
+	{ id: '03', title: 'Мое Портфолио', path: '#' },
+	{ id: '04', title: 'Отзывы', path: '#' },
+	{ id: '05', title: 'Тарифы', path: '#' }
+]
 
-	const handleClose = () => {
-		setTimeout(() => {
-			document.body.classList.remove('close')
-		}, 200)
-		onClick()
-	}
-
+const MobileNavLinks = ({ handleClose, handleScroll }) => {
 	return (
-		<div className={styles.wrapper}>
-			<div
+		<nav className={`${styles.wrapper} ${styles._open}`}>
+			<button
 				className={styles.close}
 				onClick={handleClose}
-			/>
-			{mobileNav.map((item) => (
+			>
+				<span className={styles.stripe_one}></span>
+				<span className={styles.stripe_two}></span>
+			</button>
+			{mobileNav.map((item, index) => (
 				<Link
-					href={item.path}
+					href={''}
 					key={item.id}
 					className={styles.link}
-					onClick={handleClose}
+					onClick={(e) => {
+						handleScroll(e, index)
+						handleClose()
+					}}
 				>
 					{item.title}
 				</Link>
 			))}
-		</div>
+		</nav>
 	)
 }
 

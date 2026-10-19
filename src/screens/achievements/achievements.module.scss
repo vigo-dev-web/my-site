@@ -1,79 +1,122 @@
 @import '../../app/styles/vars';
 
-.section {
-   padding-top: toRem(100);
-   padding-bottom: toRem(100);
+.section
+{
+   padding-block: toRem(100);
+
+   @media (max-width: $sTablet)
+   {
+      padding-block: toRem(40);
+   }
 }
 
-.container {
+.container
+{
    @include container;
 }
 
-.wrapper {
+.wrapper
+{
    display: flex;
-   justify-content: space-between;
+   justify-content: space-evenly;
    flex-wrap: wrap;
-   @media (max-width: toRem(1200)) {
-      justify-content: center;
-      gap: toRem(50);
+   gap: toRem(48);
+
+   @media (max-width: toRem(1200))
+   {
+      gap: toRem(48);
    }
-   @media (max-width: $tablet) {
+
+   @media (max-width: $tablet)
+   {
       justify-content: center;
       gap: toRem(80);
    }
-   @media (max-width: $sTablet) {
+
+   @media (max-width: $sTablet)
+   {
       justify-content: center;
-      gap: toRem(23);
-      & p {
+      gap: toRem(24);
+
+      & p
+      {
          font-size: toRem(16);
       }
    }
+   @media (max-width: $mobile)
+   {
+      gap: toRem(32);
+   }
 }
 
-.title {
+.title
+{
    margin-bottom: toRem(70);
    text-align: center;
-   background-image: linear-gradient(to top right, $primaryColor, $secondaryColor,);
+   background-image: linear-gradient(to top right, $primaryColor, $secondaryColor, );
    color: transparent;
-   background-clip: text;   
-   & span {
+   background-clip: text;
+
+   & span
+   {
       color: $whiteColor;
    }
-   @media (max-width: $sTablet) {
+
+   @media (max-width: $sTablet)
+   {
       margin-bottom: toRem(40);
    }
 }
 
-.itemWrapper {
+.itemWrapper
+{
    display: flex;
    justify-content: space-between;
    gap: toRem(10);
    align-items: center;
    position: relative;
-   &:nth-child(-n+3)::after {
+
+   &:nth-child(-n+3)::after
+   {
       content: '';
       display: block;
       width: 1px;
       position: absolute;
-      @include adaptiveMaxValue ("right", -50,  -22);
+      right: clamp(-56px, -4.7vw + 32.09px, -25px);
       height: 100%;
-      background: radial-gradient(ellipse at center,rgba(255, 255, 255, 0.315) 0,rgba(31,45,61,0) 80%);
+      background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.315) 0, rgba(31, 45, 61, 0) 80%);
+
+      @media (max-width: toRem(1202))
+      {
+         right: clamp(-3.938rem, 5.291rem + -12.16vw, -2.25rem);
+      }
    }
-   @media (max-width: toRem(1200)) {
-      &:nth-child(n+3)::after {
+
+   @media (max-width: toRem(1202))
+   {
+      &:nth-child(n+3)::after
+      {
+         display: none;
          content: '';
          width: 0;
-      }      
+      }
    }
-   @media (max-width: $tablet) {
-      &:nth-child(n+1)::after {
+
+   @media (max-width: $tablet)
+   {
+      justify-content: flex-start;
+      max-width: toRem(283);
+      width: 100%;
+
+      &:nth-child(n+1)::after
+      {
          content: '';
          width: 0;
-      }      
+      }
+   }
+
+   @media (max-width: $sTablet)
+   {
+      max-width: toRem(256);
    }
 }
-
-// .img {
-//    width: toRem(300);
-// }
-

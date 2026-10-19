@@ -1,6 +1,7 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
 import { useInView } from 'motion/react'
+import dynamic from 'next/dynamic'
 import Header from './components/layouts/header/header'
 import Footer from './components/layouts/footer/footer'
 import Copyright from './components/ui/copyright/copyright'
@@ -10,15 +11,16 @@ import GoTo from './components/ui/goTo/goTo'
 import ArrowDown from './components/ui/arrowDown/arrowDown'
 import Tariffs from '../screens/tariffs/tariffs'
 import MyServices from '../screens/myServices/myServices'
-import Achievements from '../screens/achievements/achievements'
 import Benefits from '../screens/benefits/benefits'
 import About from '../screens/about/about'
-import ContactForm from 'screens/contactForm/contactForm'
-import Portfolio from 'screens/portfolio/portfolio'
+import ContactForm from '../screens/contactForm/contactForm'
+import Portfolio from '../screens/portfolio/portfolio'
 import Cta from './components/ui/cta/cta'
 import styles from './page.module.scss'
 import { cta } from './data/cta'
-import { useScrollScreen } from './utils/utils'
+import { useScrollScreen } from './hooks/useScrollScreen'
+
+const Achievements = dynamic(() => import('../screens/achievements/achievements'), { ssr: false })
 
 export default function Home() {
 	const [activeIndex, setActiveIndex] = useState(0)
@@ -33,11 +35,11 @@ export default function Home() {
 	const formRef = useRef(null)
 
 	const isViewAbout = useInView(aboutRef)
-	const isViewBenefits = useInView(benefitsRef, { margin: '-380px' })
-	const isViewService = useInView(serviceRef, { amount: 0.3 })
-	const isViewPortfolio = useInView(portfolioRef, { amount: 0.3 })
-	const isViewTestimonials = useInView(testimonialsRef, { amount: 0.3 })
-	const isViewTarif = useInView(tarifRef, { amount: 0.3 })
+	const isViewBenefits = useInView(benefitsRef, {})
+	const isViewService = useInView(serviceRef, {})
+	const isViewPortfolio = useInView(portfolioRef, {})
+	const isViewTestimonials = useInView(testimonialsRef, {})
+	const isViewTarif = useInView(tarifRef, {})
 
 	const sections = [
 		{ ref: aboutRef, condition: isViewAbout },
@@ -50,11 +52,13 @@ export default function Home() {
 
 	useEffect(() => {
 		const activeSection = sections.find((section) => section.condition)
-		const activeIndex = sections.findIndex((section) => section.condition)
+		const activeIndex = sections.findIndex((section) => {
+			return section.condition
+		})
 		if (activeSection) setActiveIndex(activeIndex)
 	}, [isViewAbout, isViewBenefits, isViewService, isViewPortfolio, isViewTestimonials, isViewTarif])
 
-	const handleClick = (event, idx) => {
+	const handleScroll = (event, idx) => {
 		event.preventDefault()
 		sections[idx].ref.current.scrollIntoView(scrollObject)
 	}
@@ -63,12 +67,16 @@ export default function Home() {
 		<div className={styles.page}>
 			<Header
 				activeIndex={activeIndex}
-				handleClick={handleClick}
+				handleScroll={handleScroll}
+				refForm={formRef.current}
 			/>
 			<GoTo setIdx={setActiveIndex} />
 			<ArrowDown />
 			<main className={styles.main}>
-				<About ref={aboutRef} refForm={formRef.current} />
+				<About
+					ref={aboutRef}
+					refForm={formRef.current}
+				/>
 				<Achievements />
 				<Benefits ref={benefitsRef} />
 				<Cta

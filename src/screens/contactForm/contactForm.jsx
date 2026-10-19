@@ -1,24 +1,35 @@
 'use client'
-import { useState } from 'react'
-import { useMotionValueEvent, useScroll } from 'motion/react'
 import { Form } from 'radix-ui'
-import styles from './contactForm.module.scss'
 import * as motion from 'motion/react-client'
-import { titleAnimation } from 'app/data/animation'
-import MainButton from 'app/components/ui/buttons/mainButton/mainButton'
+import styles from './contactForm.module.scss'
+import { titleAnimation } from '../../app/data/animation'
+import MainButton from '../../app/components/ui/buttons/mainButton/mainButton'
+import MaskedInputField from '../../app/components/ui/MaskedInputField/MaskedInputField'
+import { getRequestInterface } from '../../../src/app/api/requestInterface'
 
-const ContactForm = ({ref}) => {
-	const [translateValue, setTranslateValue] = useState()
-	const { scrollY, scrollYProgress } = useScroll()
-
-	useMotionValueEvent(scrollY, 'change', (latest) => {
-		if (800 < latest < 2650) {
-			setTranslateValue((scrollYProgress.current * 500 - 100) * 1.4)
+const ContactForm = ({ ref }) => {
+	const handleSubmit = async (formData) => {
+		const data = {
+			name: formData.get('name'),
+			phone: formData.get('phone'),
+			email: formData.get('email'),
+			comment: formData.get('comment')
 		}
-	})
 
-	const handleClick = (e) => {
-		e.preventDefault()
+		const requestInterface = getRequestInterface(data)
+
+		try {
+			const res = await fetch('/api/contact', requestInterface)
+			const result = await res.json()
+
+			if (res.ok) {
+				console.log('Успех:', result.message)
+			} else {
+				console.error('Ошибка:', result.message)
+			}
+		} catch (error) {
+			console.error('Ошибка сети:', error)
+		}
 	}
 
 	return (
@@ -32,12 +43,17 @@ const ContactForm = ({ref}) => {
 			<div className={styles.container}>
 				<motion.h2
 					className={styles.title}
-					custom={1}
 					variants={titleAnimation}
+					initial='hidden'
+					whileInView='visible'
+					viewport={{ once: true }}
 				>
 					<span>Свяжитесь </span> со мной
 				</motion.h2>
-				<Form.Root className={styles.Root}>
+				<Form.Root
+					className={styles.Root}
+					action={handleSubmit}
+				>
 					<Form.Field
 						className={styles.Field}
 						name='name'
@@ -73,15 +89,20 @@ const ContactForm = ({ref}) => {
 							>
 								Введите ваш телефон
 							</Form.Message>
+							<Form.Message
+								className={styles.Message}
+								match='patternMismatch'
+							>
+								Введите корректный телефон
+							</Form.Message>
 						</div>
 						<Form.Control asChild>
-							<input
-								className={styles.Input}
+							<MaskedInputField
+								styles={styles}
 								type='tel'
 								required
+								placeholder='+7(999)999-99-99'
 								autoComplete='off'
-								pattern='[0-9]{3}-[0-9]{3}-[0-9]{2}-[0-9]{2}'
-								placeholder='+7(999) 999-99-99'
 							/>
 						</Form.Control>
 					</Form.Field>
@@ -116,7 +137,7 @@ const ContactForm = ({ref}) => {
 					</Form.Field>
 					<Form.Field
 						className={styles.Field}
-						name='question'
+						name='comment'
 					>
 						<div className={styles.FieldWrapper}>
 							<Form.Label className={styles.Label}>Ваш комментарий к заявке:</Form.Label>
@@ -127,12 +148,7 @@ const ContactForm = ({ref}) => {
 					</Form.Field>
 					<div className={styles.buttonWrapper}>
 						<Form.Submit asChild>
-							<MainButton
-								onClick={(e) => handleClick(e)}
-								size='large'
-							>
-								Оставить заявку
-							</MainButton>
+							<MainButton size='large'>Оставить заявку</MainButton>
 						</Form.Submit>
 					</div>
 				</Form.Root>

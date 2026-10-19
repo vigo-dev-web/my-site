@@ -1,7 +1,7 @@
 import * as motion from 'motion/react-client'
 import styles from './cta.module.scss'
 import WhiteButton from '../buttons/whiteButton/whiteButton'
-import { useScrollScreen } from 'app/utils/utils'
+import { useScrollScreen } from '../../../hooks/useScrollScreen'
 
 const Cta = ({ refForm, children, title, subtitle }) => {
 	const { scrollObject } = useScrollScreen()

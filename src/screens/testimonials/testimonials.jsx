@@ -13,6 +13,7 @@ import 'swiper/scss/pagination'
 import 'swiper/scss/navigation'
 
 const Testimonials = ({ ref }) => {
+
 	const pagination = {
 		clickable: true,
 		el: `.${styles.bulletContainer}`,
@@ -49,8 +50,10 @@ const Testimonials = ({ ref }) => {
 			<div className={styles.container}>
 				<motion.h2
 					className={styles.title}
-					custom={1}
 					variants={titleAnimation}
+					initial='hidden'
+					whileInView='visible'
+					viewport={{ once: true }}
 				>
 					<span>Голос</span> клиента
 				</motion.h2>

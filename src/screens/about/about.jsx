@@ -3,8 +3,8 @@ import Image from 'next/image'
 import { TypeAnimation } from 'react-type-animation'
 import styles from './about.module.scss'
 import img from '../../../public/img/main.jpg'
-import MainButton from 'app/components/ui/buttons/mainButton/mainButton'
-import { useScrollScreen } from 'app/utils/utils'
+import MainButton from '../../app/components/ui/buttons/mainButton/mainButton'
+import { useScrollScreen } from '../../app/hooks/useScrollScreen'
 
 const About = ({ ref, refForm }) => {
 	const { scrollObject } = useScrollScreen()

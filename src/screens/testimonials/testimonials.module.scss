@@ -2,7 +2,7 @@
 
 .section {
    min-height: 100vh;
-   padding-top: toRem(100);
+   margin-top: toRem(100);
    padding-bottom: toRem(100);
    @media (max-width: $mobile) {
       padding-top: toRem(40);
@@ -36,12 +36,10 @@
          background: none;  
       }
    }
-   @media (max-width: $sTablet) {
-      right: 50%;
-      margin-right: 0;
-      transform: translateX(50%);
-      margin-bottom: toRem(40);
-      text-align: center;
+     @media (max-width: $sTablet)
+   {
+      margin-right: toRem(20);
+      margin-bottom: toRem(30);
    }
 
 }

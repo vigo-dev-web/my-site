@@ -1,50 +1,76 @@
 'use client'
 import * as motion from 'motion/react-client'
+import { useEffect, useState, useRef } from 'react'
+import { useScroll, useTransform } from 'motion/react'
 import styles from './benefits.module.scss'
 import { titleAnimation } from '../../app/data/animation'
-import { useState } from 'react'
-import { useMotionValueEvent, useScroll } from 'motion/react'
 
-const Benefits = ({ref}) => {
-	const [translateValue, setTranslateValue] = useState()
-	const { scrollY, scrollYProgress } = useScroll()	
+const Benefits = ({ ref }) => {
+	const targetRef = useRef(null)
 
-	useMotionValueEvent(scrollY, 'change', (latest) => {
-		if( 800 < latest < 2650  ) {
-		setTranslateValue((scrollYProgress.current*500 - 100)* (1.4))
+	const setRefs = (element) => {
+		targetRef.current = element
+		if (!ref) return
+		if (typeof ref === 'function') {
+			ref(element)
+		} else {
+			ref.current = element
 		}
+	}
+	const { scrollYProgress } = useScroll({
+		target: targetRef,
+		offset: ['start end', 'end center']
 	})
+	const [isMobile, setIsMobile] = useState(false)
+
+	const startP = isMobile ? 0 : -50
+	const finishP = isMobile ? 0 : 170
+	const translateY = useTransform(scrollYProgress, [0, 0.8], [startP, finishP])
+
+	useEffect(() => {
+		const checkScreenSize = () => {
+			window.innerWidth < 768 ? setIsMobile(true) : setIsMobile(false)
+		}
+		checkScreenSize()
+		window.addEventListener('resize', checkScreenSize)
+		return () => {
+			window.removeEventListener('resize', checkScreenSize)
+		}
+	}, [])
 
 	return (
 		<motion.section
-			ref={ref}
+			ref={setRefs}
 			className={styles.section}
 			initial='hidden'
 			whileInView='visible'
 			viewport={{ amount: 0.2 }}
 		>
 			<p className={styles.note}>
-				Рвасскажу тебе - <br /> почему нам стоит поработать
+				Расскажу тебе - <br /> почему нам стоит поработать
 			</p>
 			<div className={styles.container}>
 				<motion.h2
 					className={styles.title}
-					custom={1}
 					variants={titleAnimation}
+					initial='hidden'
+					whileInView='visible'
+					viewport={{ once: true }}
 				>
 					<span>Преимущества работы со</span> мной
 				</motion.h2>
 				<div className={styles.wrapper}>
 					<motion.div
 						className={styles.left}
-						style={{ position: 'relative', translateY: `${translateValue}px` }}
+						style={{ translateY }}
 					>
 						<div className={styles.body}>
-							<ol className={styles.list}>
+							<ul className={styles.list}>
 								<li className={styles.item}>
-									<h5 className={styles.itemTitle}>Четкое соблюдение сроков</h5>
+									<h3 className={styles.itemTitle}>
+										<span className={styles.itemMark}>1</span>Четкое соблюдение сроков
+									</h3>
 									<p className={styles.itemText}>
-										<span className={styles.itemSubtitle}></span>
 										<span className={styles.itemNote}></span>
 										Прежде всего, каждый проект мы разбиваем на четкие этапы: разработка технического задания, создание
 										дизайна, верстка, программирование и тестирование. Для каждого этапа устанавливаются конкретные
@@ -54,7 +80,9 @@ const Benefits = ({ref}) => {
 									</p>
 								</li>
 								<li className={styles.item}>
-									<h5 className={styles.itemTitle}>На связи 24/7</h5>
+									<h3 className={styles.itemTitle}>
+										<span className={styles.itemMark}>2</span>На связи 24/7
+									</h3>
 									<p className={styles.itemText}>
 										Прежде всего, каждый проект мы разбиваем на четкие этапы: разработка технического задания, создание
 										дизайна, верстка, программирование и тестирование. Для каждого этапа устанавливаются конкретные
@@ -62,7 +90,9 @@ const Benefits = ({ref}) => {
 									</p>
 								</li>
 								<li className={styles.item}>
-									<h5 className={styles.itemTitle}>Индивидуальный подход к клиенту</h5>
+									<h3 className={styles.itemTitle}>
+										<span className={styles.itemMark}>3</span>Индивидуальный подход к клиенту
+									</h3>
 									<p className={styles.itemText}>
 										Мы создаем сайты, полностью соответствующие вашим уникальным бизнес-задачам, тщательно анализируя
 										целевую аудиторию и конкурентную среду. Каждый проект начинается с глубокого погружения в специфику
@@ -71,14 +101,16 @@ const Benefits = ({ref}) => {
 										исключительно под ваши потребности.
 									</p>
 								</li>
-							</ol>
+							</ul>
 						</div>
 					</motion.div>
 					<div className={styles.right}>
 						<div className={styles.body}>
-							<ol className={styles.list}>
+							<ul className={styles.list}>
 								<li className={styles.item}>
-									<h5 className={styles.itemTitle}>Поддержка готовых продуктов</h5>
+									<h3 className={styles.itemTitle}>
+										<span className={styles.itemMark}>4</span>Поддержка готовых продуктов
+									</h3>
 									<p className={styles.itemText}>
 										Каждый проект начинается с глубокого погружения в специфику вашей ниши, чтобы разработать
 										по-настоящему персонализированное решение. Вместо шаблонных решений мы предлагаем индивидуальный
@@ -87,7 +119,9 @@ const Benefits = ({ref}) => {
 									</p>
 								</li>
 								<li className={styles.item}>
-									<h5 className={styles.itemTitle}>Скидки и акции для постоянных клиентов</h5>
+									<h3 className={styles.itemTitle}>
+										<span className={styles.itemMark}>5</span>Выгодные условия для постоянных клиентов
+									</h3>
 									<p className={styles.itemText}>
 										Разработка начинается с глубокого анализа вашего бизнеса, целевой аудитории и конкурентов, чтобы
 										создать эффективную стратегию. Затем мы разрабатываем уникальный дизайн, который точно отражает ваш
@@ -95,7 +129,9 @@ const Benefits = ({ref}) => {
 									</p>
 								</li>
 								<li className={styles.item}>
-									<h5 className={styles.itemTitle}>Позитивный настрой во время работы</h5>
+									<h3 className={styles.itemTitle}>
+										<span className={styles.itemMark}>6</span>Позитивный настрой во время работы
+									</h3>
 									<p className={styles.itemText}>
 										После утверждения дизайна наши программисты создают адаптивный и функциональный сайт с учетом всех
 										технических требований и SEO-оптимизации. Мы проводим тщательное тестирование на всех устройствах и
@@ -103,7 +139,7 @@ const Benefits = ({ref}) => {
 										«под ключ» с инструкцией по управлению и рекомендациями по продвижению.
 									</p>
 								</li>
-							</ol>
+							</ul>
 						</div>
 					</div>
 				</div>

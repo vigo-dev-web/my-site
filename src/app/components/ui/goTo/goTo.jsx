@@ -1,5 +1,5 @@
 'use client'
-import { useScrollScreen } from '../../../utils/utils'
+import { useScrollScreen } from '../../../hooks/useScrollScreen'
 import styles from './goTo.module.scss'
 
 const GoTo = ({ setIdx }) => {

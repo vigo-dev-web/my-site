@@ -66,6 +66,8 @@
 	font-size: 13px;
 	color: white;
 	opacity: 0.8;
+	color: $turboColor;
+	font-weight: 600;
 }
 
 .FieldWrapper
@@ -122,4 +124,7 @@
 
 .buttonWrapper {
 	margin-top: toRem(36);
+	margin-inline: auto;
+	display: flex;
+	justify-content: center;
 }

@@ -3,8 +3,7 @@ import { menu } from '../../../data/menu'
 import styles from './nav.module.scss'
 import MenuUnderline from '../menuUnderline/menuUnderLine'
 
-const Nav = ({ activeIndex, handleScroll }) => {
-
+const Nav = ({ activeIndex, handleScroll }) => {	
 	return (
 		<nav className={styles.nav}>
 			<ul className={styles.list}>
@@ -13,7 +12,7 @@ const Nav = ({ activeIndex, handleScroll }) => {
 						<motion.li
 							key={item.id}
 							onClick={(e) => handleScroll(e, idx)}
-							style={{ padding: '0 0.5rem', display: 'flex', justifyContent: 'center', position: 'relative' }}
+							style={{ padding: '0', display: 'flex', justifyContent: 'center', position: 'relative' }}
 							initial={{ color: '#fff' }}
 							animate={{ color: activeIndex === idx ? '#0085fa' : '#fff' }}
 						>

@@ -1,17 +1,11 @@
+'use client'
 import * as motion from 'motion/react-client'
-import { useState } from 'react'
-import { services } from '../../app/data/services'
-import AccordionItem from '../../app/components/ui/accordionItem/accordionItem'
 import styles from './portfolio.module.scss'
 import { titleAnimation } from '../../app/data/animation'
+import projects from '../../app/data/projects'
+import PortfolioCard from '../../app/components/portfolioCard/portfolioCard'
 
 const Portfolio = ({ ref }) => {
-	const [openId, setId] = useState(null)
-
-	const handleClick = (index) => {
-		index === openId ? setId(null) : setId(index)
-	}
-
 	return (
 		<motion.section
 			ref={ref}
@@ -30,19 +24,19 @@ const Portfolio = ({ ref }) => {
 			>
 				<motion.h2
 					className={styles.title}
-					custom={1}
 					variants={titleAnimation}
+					initial='hidden'
+					whileInView='visible'
+					viewport={{ once: true }}
 				>
-					<span>Мои</span> проекты
+					<span>Мое</span> портфолио
 				</motion.h2>
 				<div className={styles.wrapper}>
-					{services.map((item, index) => (
-						<AccordionItem
+					{projects.map((item, index) => (
+						<PortfolioCard
 							key={item.id}
-							{...item}
 							index={index}
-							isOpen={index === openId}
-							onClick={() => handleClick(index)}
+							{...item}
 						/>
 					))}
 				</div>

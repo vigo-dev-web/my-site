@@ -7,7 +7,7 @@ const TestimonialCard = ({name, age, text, profession, rating }) => {
 		<div className={styles.card}>
 			<div className={styles.wrapper}>
 				<Stars rating={rating} />
-				<h4 className={styles.title}>{name}</h4>
+				<h3 className={styles.title}>{name}</h3>
 				<div className={styles.note}>
 					<span>{profession},</span> <span>{age}</span>
 				</div>
